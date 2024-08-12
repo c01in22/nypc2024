@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+ll t, cnt;
+ll x[500010];
+ll dp[500010];
+
+ll sol(ll k){
+    if(k == 1) return dp[1] = x[1];
+    if(k == 2) return dp[2] = max(x[2], x[1]);
+    if(dp[k]) return dp[k];
+    else{
+        dp[k-1] = sol(k-1);
+        dp[k-2] = sol(k-2);
+        return dp[k] = min(dp[k-1]+x[k], dp[k-2]+max(x[k], x[k-1]));
+    }
+}
+
+int main(){
+    cin >> t;
+    for(ll i = 1; i <= t; i++) cin >> x[i];
+    cout << sol(t);
+}
