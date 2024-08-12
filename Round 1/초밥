@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+ll n;
+
+int main(){
+    ios_base :: sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> n;
+    while(n--){
+        ll a, b;
+        cin >> a >> b;
+        if(a < b) swap(a, b);
+        if(a > 3 * b) cout << -1 << '\n';
+        else{
+            ll k = (a + b) / 4 + 10;
+            for(ll i = k; i >= k-10; i--){
+                if(b >= i && a <= i * 4 - b && a > (i - 1) * 4 - b){
+                    cout << i << '\n';
+                    break;
+                }
+            }
+        }
+    }
+    return 0;
+}
